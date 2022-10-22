@@ -91,6 +91,12 @@ import UiTypography from '../views/backend/ui/UiTypography'
 
 
 
+import Commande from '../views/backend/App/CommandeManagement/Commande';
+import CommandeAdd from '../views/backend/App/CommandeManagement/CommandeAdd';
+import CommandeView from '../views/backend/App/CommandeManagement/CommandeViews';
+import CommandeEdit from '../views/backend/App/CommandeManagement/CommandeEdit';
+
+
 // icon-heroicon
 import Heroicons from '../views/backend/Icons/Heroicons ';
 
@@ -183,6 +189,15 @@ const Layout1Route = () => {
                     <Route path="/customer-add"      component={Customeradd}/>
                     <Route path="/customer-view"     component={Customerview}/>
                     <Route path="/customer-edit"      component={Customeredit}/>
+
+
+                    {/*Commande*/}
+                    <Route path="/Commande"          component={Commande}/>
+                    <Route path="/CommandeAdd"      component={CommandeAdd}/>
+                    <Route path="/CommandeView"     component={CommandeView}/>
+                    <Route path="/CommandeEdit/:id"      component={CommandeEdit}/>
+
+                    
 
                     {/* Product */}
                     <Route path="/product"            component={Product}/>
