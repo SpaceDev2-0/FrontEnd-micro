@@ -4,14 +4,11 @@ import  Card from '../../../components/Card'
 import {Link, Redirect, useHistory} from 'react-router-dom'
 import axios from 'axios'
 
-// img
-import product1 from '../../../assets/images/products/1.jpg'
-import product12 from '../../../assets/images/products/12.jpg'
+
 
 
 
 const Ordernew =()=>{
-    const [order,setOrder]=React.useState([])
     //get data form
     const [idProduct,setIdProduct]=React.useState('')
     const [idUser,setIdUser]=React.useState('')
