@@ -18,11 +18,8 @@ const FactureEdit = () => {
         idFacture: "",
         etat: "",
         description: "",
-        date_livraison: "",
         nom: "",
         date: "",
-        frais: "",
-        produit: "",
       });
      
 
