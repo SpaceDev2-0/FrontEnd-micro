@@ -20,6 +20,13 @@ import Productadd from "../views/backend/Main/Productadd";
 import Order from "../views/backend/Main/Order";
 import Ordernew from "../views/backend/Main/Ordernew";
 import Orderdetails from "../views/backend/Main/Orderdetails";
+import OrderEdit from "../views/backend/Main/OrderEdit";
+
+// Fournisseur
+import Fournisseur from "../views/backend/Main/Fournisseur";
+import Fournisseurnew from "../views/backend/Main/Fournisseurnew";
+import FournisseurEdit from "../views/backend/Main/FournisseurEdit";
+import FournisseurView from "../views/backend/Main/FournisseurView";
 
 //App
 import UserProfile from "../views/backend/App/UserManagement/UserProfile";
@@ -205,7 +212,14 @@ const Layout1Route = () => {
           {/* Order */}
           <Route path="/order" component={Order} />
           <Route path="/order-new" component={Ordernew} />
-          <Route path="/order-details" component={Orderdetails} />
+          <Route path="/order-details/:id" component={Orderdetails} />
+          <Route path="/order-edit/:id" component={OrderEdit} />
+
+          {/* Fournisseur */}
+          <Route path="/fournisseur" component={Fournisseur} />
+          <Route path="/fournisseur-add" component={Fournisseurnew} />
+          <Route path="/fournisseur-view/:id" component={FournisseurView} />
+          <Route path="/fournisseur-edit/:id" component={FournisseurEdit} />
 
           {/* Caldenar */}
           <Route path="/calendar" component={Calendar} />
