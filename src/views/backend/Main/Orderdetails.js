@@ -1,7 +1,8 @@
 import  React from 'react'
 import {Container,Row,Col,ListGroup} from 'react-bootstrap'
 import  Card from '../../../components/Card'
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
+import axios from 'axios'
 
 
 // img
@@ -11,6 +12,19 @@ import product8 from '../../../assets/images/products/8.jpg'
 
 
 const Orderdetails =()=>{
+    const { id } = useParams();
+    const [order, setOrder] = React.useState({});
+    //get data form api
+    const getOrderByID = () => {
+        axios.get(`http://localhost:8762/getPanierById/${id}`).then((response) => {
+            setOrder(response.data);
+        });
+    };
+
+    React.useEffect(() => {
+        getOrderByID();
+    }, []);
+
     return(
         <>
         <Container fluid>
@@ -53,31 +67,31 @@ const Orderdetails =()=>{
                                                 ID
                                             </td>
                                             <td>
-                                                OR-325548
+                                                {order.id}
                                             </td>
                                         </tr>
                                         <tr className="white-space-no-wrap">
                                             <td className="text-muted pl-0">
-                                                Date &#38; Time
+                                                Id customer
                                             </td>
                                             <td>
-                                                01 Jan 2021 06:32
+                                                {order.idUser}
                                             </td>
                                         </tr>
                                         <tr className="white-space-no-wrap">
                                             <td className="text-muted pl-0">
-                                                Payment Method
+                                                Id produit
                                             </td>
                                             <td>
-                                                Credit Card
+                                                {order.idProduit}
                                             </td>
                                         </tr>
                                         <tr className="white-space-no-wrap">
                                             <td className="text-muted pl-0">
-                                                Invoice
+                                                Total
                                             </td>
                                             <td className="text-primary">
-                                                IN-302240
+                                                {order.total} DT
                                             </td>
                                         </tr>
                                         <tr className="white-space-no-wrap">
@@ -96,7 +110,7 @@ const Orderdetails =()=>{
                                 </table>
                             </div>
                         </ListGroup.Item>
-                        <ListGroup.Item as="li" className="p-3">
+                        {/* <ListGroup.Item as="li" className="p-3">
                             <h5 className="font-weight-bold pb-2">Customer Details</h5>
                             <div className="table-responsive">
                                 <table className="table table-borderless mb-0">
@@ -152,12 +166,12 @@ const Orderdetails =()=>{
                                     </tbody>
                                 </table>
                             </div>
-                        </ListGroup.Item>
+                        </ListGroup.Item> */}
                     </ListGroup>
                 </Card>
             </Col>
             <Col lg="8">
-                <Card>
+                {/* <Card>
                     <ListGroup as="ul" className="list-group-flush">
                         <ListGroup.Item as="li" className="p-3">
                             <h5 className="font-weight-bold">Order Items</h5>
@@ -252,7 +266,7 @@ const Orderdetails =()=>{
                             </div>
                         </ListGroup.Item>
                     </ListGroup>
-                </Card>
+                </Card> */}
             </Col>
         </Row>
     </Container>

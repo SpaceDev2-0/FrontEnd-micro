@@ -20,6 +20,7 @@ import Productadd from '../views/backend/Main/Productadd';
 import Order from '../views/backend/Main/Order';
 import Ordernew from '../views/backend/Main/Ordernew';
 import Orderdetails from '../views/backend/Main/Orderdetails';
+import OrderEdit from '../views/backend/Main/OrderEdit';
 
 
 //App
@@ -191,7 +192,8 @@ const Layout1Route = () => {
                     {/* Order */}
                     <Route path="/order"              component={Order}/>
                     <Route path="/order-new"          component={Ordernew}/>
-                    <Route path="/order-details"      component={Orderdetails}/>
+                    <Route path="/order-details/:id"  component={Orderdetails}/>
+                    <Route path="/order-edit/:id"     component={OrderEdit}/>
 
                     {/* Caldenar */}
                     <Route path="/calendar"           component={Calendar}/>

@@ -1,98 +1,130 @@
-import  React from 'react'
-import {Container,Row,Col,Form,Button,OverlayTrigger,Tooltip} from 'react-bootstrap'
+import  React, {useEffect, useState} from 'react'
+import {Container,Row,Col,Form,Button,OverlayTrigger,Tooltip, ButtonGroup} from 'react-bootstrap'
 import  Card from '../../../components/Card'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
+import axios from 'axios'
+
+
+
+
 // import { formatIsoTimeString } from '@fullcalendar/react'
 
-const Orders=[
-    {
-        id:'OR-325548',
-        date:'01 Jan 2021',
-        cust:'Jack Ryan',
-        total:'$104.98',
-        status:'Completed',
-        color:'text-success'
-    },
-    {
-        id:'OR-223544',
-        date:'02 Jan 2021',
-        cust:'Matt Damon',
-        total:'$99.00',
-        status:'Completed',
-        color:'text-success'
-    },
-    {
-        id:'OR-125623',
-        date:'02 Jan 2021',
-        cust:'Caitriona Balfe',
-        total:'$249.49',
-        status:'Pending',
-        color:'text-warning'
-    },
-    {
-        id:'OR-662210',
-        date:'02 Jan 2021',
-        cust:'Josh Lucas',
-        total:'$9.99',
-        status:'Completed',
-        color:'text-success'
-    },
-    {
-        id:'OR-901020',
-        date:'03 Jan 2021',
-        cust:'Jon Bernthal',
-        total:'$90.49',
-        status:'Cancelled',
-        color:'text-danger'
-    },
-    {
-        id:'OR-902210',
-        date:'05 Jan 2021',
-        cust:'Noah Jupe',
-        total:'$39.99',
-        status:'Completed',
-        color:'text-success'
-    },
-    {
-        id:'OR-902559',
-        date:'06 Jan 2021',
-        cust:'Tracy Letts',
-        total:'$19.22',
-        status:'Pending',
-        color:'text-warning'
-    },
-    {
-        id:'OR-253524',
-        date:'09 Jan 2021',
-        cust:'Ray McKinnon',
-        total:'$102.9',
-        status:'Cancelled',
-        color:'text-danger'
-    },
-    {
-        id:'OR-902559',
-        date:'10 Jan 2021',
-        cust:'Remo Girone',
-        total:'$13.99',
-        status:'Completed',
-        color:'text-success'
-    },
-    {
-        id:'OR-302240',
-        date:'	12 Jan 2021',
-        cust:'Jack McMullen',
-        total:'$25.99',
-        status:'Completed',
-        color:'text-success'
-    },
+// const Orders=[
+//     {
+//         id:'OR-325548',
+//         date:'01 Jan 2021',
+//         cust:'Jack Ryan',
+//         total:'$104.98',
+//         status:'Completed',
+//         color:'text-success'
+//     },
+//     {
+//         id:'OR-223544',
+//         date:'02 Jan 2021',
+//         cust:'Matt Damon',
+//         total:'$99.00',
+//         status:'Completed',
+//         color:'text-success'
+//     },
+//     {
+//         id:'OR-125623',
+//         date:'02 Jan 2021',
+//         cust:'Caitriona Balfe',
+//         total:'$249.49',
+//         status:'Pending',
+//         color:'text-warning'
+//     },
+//     {
+//         id:'OR-662210',
+//         date:'02 Jan 2021',
+//         cust:'Josh Lucas',
+//         total:'$9.99',
+//         status:'Completed',
+//         color:'text-success'
+//     },
+//     {
+//         id:'OR-901020',
+//         date:'03 Jan 2021',
+//         cust:'Jon Bernthal',
+//         total:'$90.49',
+//         status:'Cancelled',
+//         color:'text-danger'
+//     },
+//     {
+//         id:'OR-902210',
+//         date:'05 Jan 2021',
+//         cust:'Noah Jupe',
+//         total:'$39.99',
+//         status:'Completed',
+//         color:'text-success'
+//     },
+//     {
+//         id:'OR-902559',
+//         date:'06 Jan 2021',
+//         cust:'Tracy Letts',
+//         total:'$19.22',
+//         status:'Pending',
+//         color:'text-warning'
+//     },
+//     {
+//         id:'OR-253524',
+//         date:'09 Jan 2021',
+//         cust:'Ray McKinnon',
+//         total:'$102.9',
+//         status:'Cancelled',
+//         color:'text-danger'
+//     },
+//     {
+//         id:'OR-902559',
+//         date:'10 Jan 2021',
+//         cust:'Remo Girone',
+//         total:'$13.99',
+//         status:'Completed',
+//         color:'text-success'
+//     },
+//     {
+//         id:'OR-302240',
+//         date:'	12 Jan 2021',
+//         cust:'Jack McMullen',
+//         total:'$25.99',
+//         status:'Completed',
+//         color:'text-success'
+//     },
 
-]
+// ]
 
 
 const Order = ()=>{
+    // get orders from api
+    const [orders,setOrders]=useState([])
+    const history = useHistory();
+    
+
+    const getOrders=async()=>{
+        const res=await axios.get('http://localhost:8762/getAllPaniers').then(res=>{
+            setOrders(res.data)
+            console.log(res.data)
+        })
+    }
+
+    const deleteOrder=async(id)=>{
+        await axios.delete(`http://localhost:8762/deletePanierById/${id}`)
+    }
+
+    function submit (id)  {
+
+        window.confirm("Are you sure you want to delete this order?") && deleteOrder(id)
+        history.push('/order')
+      }
+
+ 
+    useEffect(()=>{
+        getOrders()
+    },[])
+
     return(
         <>
-          
+
     <Container fluid>
         <Row>
             
@@ -155,13 +187,10 @@ const Order = ()=>{
                                                      {/* <input type="text" className="form-control mt-2" id="text1" aria-describedby="textHelp" placeholder="ID"/>  */}
                                                 </th>
                                                 <th scope="col" className="dates">
-                                                    <label className="text-muted mb-0" >Date</label>
+                                                    <label className="text-muted mb-0" >Customer</label>
                                                     {/* <input type="text" className="form-control" id="usr1" name="event_date" placeholder="Enter Date" autocomplete="off" aria-describedby="basic-addon2"/> */}
                                                 </th>
-                                                <th scope="col">
-                                                    <label className="text-muted mb-0">Customer</label>
-                                                    {/* <input type="text" className="form-control mt-2" id="text2" aria-describedby="textHelp" placeholder="Customer"/> */}
-                                                </th>
+                                                
                                                 <th scope="col" className="text-right">
                                                     <label className="text-muted mb-0">Total</label>
                                                     {/* <input type="text" className="form-control mt-2" id="text3" aria-describedby="textHelp" placeholder="Total"/>  */}
@@ -183,7 +212,7 @@ const Order = ()=>{
                                         </thead>
                                         <tbody>
                                         {
-                                                    Orders.map( (item) => (
+                                                    orders.map( (item) => (
                                             <tr key={item.cust} className="white-space-no-wrap">
                                                 <td className="pr-0">
                                                     <div className="custom-control custom-checkbox custom-control-inline">
@@ -194,12 +223,10 @@ const Order = ()=>{
                                                 <td>
                                                     {item.id}
                                                 </td>
-                                                <td>{item.date}</td>
-                                                <td>
-                                                    {item.cust}
-                                                </td>
+                                                <td>{item.idUser}</td>
+                                                
                                                 <td className="text-right">
-                                                   {item.total}
+                                                   {item.total} dt
                                                 </td>
                                                 <td>
                                                     <p className={`mb-0 ${item.color} font-weight-bold d-flex justify-content-start align-items-center`}>
@@ -211,7 +238,7 @@ const Order = ()=>{
                                                 <td>
                                                     <div className="d-flex justify-content-end align-items-center">
                                                     <OverlayTrigger placement="top" overlay={<Tooltip>View</Tooltip>}>
-                                                       <Link className=""  to="/order-details">
+                                                       <Link className=""  to={'/order-details/'+item.id}>
                                                             <svg xmlns="http://www.w3.org/2000/svg" className="text-secondary mx-4" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -219,11 +246,18 @@ const Order = ()=>{
                                                         </Link>
                                                     </OverlayTrigger>
                                                         <OverlayTrigger placement="top" overlay={<Tooltip>Edit</Tooltip>} >
-                                                        <Link className="" to="#">
+                                                        <Link className="" to={'/order-edit/'+item.id} >
                                                             <svg xmlns="http://www.w3.org/2000/svg" className="text-secondary" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                                             </svg>
                                                         </Link>
+                                                    </OverlayTrigger>
+                                                    <OverlayTrigger placement="top" overlay={<Tooltip>Delete</Tooltip>}>
+                                                        <button className="btn btn-link text-secondary p-0" onClick={() => submit(item.id)}>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="text-secondary" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                                            </svg>
+                                                        </button>
                                                     </OverlayTrigger>
                                                     </div>
                                                 </td>
@@ -240,7 +274,9 @@ const Order = ()=>{
                 </Row>
             </Col>
         </Row>
+
     </Container>
+
         </>
     )
 }
