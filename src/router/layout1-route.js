@@ -13,8 +13,10 @@ import Customerview from "../views/backend/Main/Cutomerview";
 import Customeredit from "../views/backend/Main/Customeredit";
 
 // Product
-import Product from "../views/backend/Main/Product";
-import Productadd from "../views/backend/Main/Productadd";
+import Product from '../views/backend/App/ProductManagement/Product';
+import Productadd from '../views/backend/App/ProductManagement/ProductAdd';
+import ProductEdit from '../views/backend/App/ProductManagement/ProductEdit';
+
 
 // order
 import Order from "../views/backend/Main/Order";
@@ -206,9 +208,9 @@ const Layout1Route = () => {
           <Route path="/CommandeEdit/:id" component={CommandeEdit} />
 
           {/* Product */}
-          <Route path="/product" component={Product} />
-          <Route path="/product-add" component={Productadd} />
-
+          <Route path="/product"            component={Product}/>
+         <Route path="/product-add"        component={Productadd}/>
+         <Route path="/product-edit/:id"        component={ProductEdit}/>
           {/* Order */}
           <Route path="/order" component={Order} />
           <Route path="/order-new" component={Ordernew} />
