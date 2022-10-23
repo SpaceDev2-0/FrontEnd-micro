@@ -20,7 +20,6 @@ const FactureAdd = () => {
   const {
     etat,
     description,
-    date_livraison,
     nom,
     date,
    
@@ -32,11 +31,11 @@ const FactureAdd = () => {
 
   const onSubmit = async (e) => {
     //  e.preventDefault();
-    axios.post("http://localhost:8081/factures", formFacture);
+    axios.post("http://localhost:8084/factures/add", formFacture);
   };
 
   const deleteFacture = async (id) => {
-    axios.delete("http://localhost:8081/factures/" + id);
+    axios.delete("http://localhost:8081/factures/remove-facture/" + id);
   };
 
   return (
@@ -139,42 +138,6 @@ const FactureAdd = () => {
                           onChange={(e) => onChange(e)}
                           id="Text2"
                           name="date"
-                          placeholder="Enter Birth Day"
-                          autoComplete="off"
-                        />
-                        <span className="search-link">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className=""
-                            width="20"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            />
-                          </svg>
-                        </span>
-                      </div>
-
-                      <div className="col-md-6 mb-3">
-                        <Form.Label
-                          htmlFor="Text2"
-                          className="font-weight-bold text-muted text-uppercase"
-                        >
-                          Date Livraison
-                        </Form.Label>
-                        <Form.Control
-                          type="date"
-                          value={date_livraison}
-                          onChange={(e) => onChange(e)}
-                          className="vanila-datepicker"
-                          id="Text2"
-                          name="date_livraison"
                           placeholder="Enter Birth Day"
                           autoComplete="off"
                         />
