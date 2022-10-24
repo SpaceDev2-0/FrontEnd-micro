@@ -101,6 +101,11 @@ import CommandeAdd from "../views/backend/App/CommandeManagement/CommandeAdd";
 import CommandeView from "../views/backend/App/CommandeManagement/CommandeViews";
 import CommandeEdit from "../views/backend/App/CommandeManagement/CommandeEdit";
 
+import Facture from '../views/backend/App/FactureManagement/Facture';
+import FactureAdd from '../views/backend/App/FactureManagement/FactureAdd';
+import FactureView from '../views/backend/App/FactureManagement/FactureViews';
+import FactureEdit from '../views/backend/App/FactureManagement/FactureEdit';
+
 // icon-heroicon
 import Heroicons from "../views/backend/Icons/Heroicons ";
 import Article from "../views/backend/App/ArticleManagement/Article";
@@ -206,6 +211,11 @@ const Layout1Route = () => {
           <Route path="/CommandeAdd" component={CommandeAdd} />
           <Route path="/CommandeView" component={CommandeView} />
           <Route path="/CommandeEdit/:id" component={CommandeEdit} />
+{/*Facture*/}
+<Route path="/Facture"          component={Facture}/>
+<Route path="/FactureAdd"      component={FactureAdd}/>
+<Route path="/FactureView"     component={FactureView}/>
+<Route path="/FactureEdit/:id"      component={FactureEdit}/>
 
           {/* Product */}
           <Route path="/product"            component={Product}/>
@@ -232,3 +242,4 @@ const Layout1Route = () => {
 };
 
 export default Layout1Route;
+
