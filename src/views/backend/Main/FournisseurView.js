@@ -1,119 +1,102 @@
-import  React from 'react'
-import {Container,Row,Col,ListGroup} from 'react-bootstrap'
-import  Card from '../../../components/Card'
-import {Link, useParams} from 'react-router-dom'
-import axios from 'axios'
+import React from "react";
+import { Container, Row, Col, ListGroup } from "react-bootstrap";
+import Card from "../../../components/Card";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
+const FournisseurView = () => {
+  const { id } = useParams();
+  const [fournisseur, setFournisseur] = React.useState({});
 
-// img
-import product1 from '../../../assets/images/products/1.jpg'
-import product6 from '../../../assets/images/products/6.jpg'
-import product8 from '../../../assets/images/products/8.jpg'
+  //get data form api
+  const getFournisseurByID = () => {
+    axios.get(`http://localhost:8099/${id}`).then((response) => {
+      setFournisseur(response.data);
+    });
+  };
 
+  React.useEffect(() => {
+    getFournisseurByID();
+  }, []);
 
-const Orderdetails =()=>{
-    const { id } = useParams();
-    const [order, setOrder] = React.useState({});
-    //get data form api
-    const getOrderByID = () => {
-        axios.get(`http://localhost:8762/getPanierById/${id}`).then((response) => {
-            setOrder(response.data);
-        });
-    };
-
-    React.useEffect(() => {
-        getOrderByID();
-    }, []);
-
-    return(
-        <>
-        <Container fluid>
+  return (
+    <>
+      <Container fluid>
         <Row>
-            <Col lg="12">
-                <div className="d-flex flex-wrap align-items-center justify-content-between mb-3">
-                   <div className="d-flex align-items-center justify-content-between">
-                        <nav aria-label="breadcrumb">
-                            <ol className="breadcrumb p-0 mb-0">
-                                <li className="breadcrumb-item"><Link to="/order">Orders</Link></li>
-                                <li className="breadcrumb-item active" aria-current="page">Order Details</li>
-                            </ol>
-                        </nav>
-                    </div>                                   
-                </div>
-            </Col>
-            <Col lg="12" className="mb-3">
-                <div className="d-flex justify-content-between align-items-center">
-                    <h4 className="font-weight-bold">Order Details</h4>
-                    <Link className="btn btn-primary btn-sm" to="/order-new">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="mr-2" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        Generate Invoice
-                    </Link>
-                </div>
-            </Col>            
+          <Col lg="12">
+            <div className="d-flex flex-wrap align-items-center justify-content-between mb-3">
+              <div className="d-flex align-items-center justify-content-between">
+                <nav aria-label="breadcrumb">
+                  <ol className="breadcrumb p-0 mb-0">
+                    <li className="breadcrumb-item">
+                      <Link to="/Fournisseur">Fournisseurs</Link>
+                    </li>
+                    <li className="breadcrumb-item active" aria-current="page">
+                      Fournisseur Details
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </Col>
+          <Col lg="12" className="mb-3">
+            <div className="d-flex justify-content-between align-items-center">
+              <h4 className="font-weight-bold">fournisseur Details</h4>
+              <Link className="btn btn-primary btn-sm" to="/fournisseur-new">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="mr-2"
+                  width="20"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+                
+              </Link>
+            </div>
+          </Col>
         </Row>
         <Row>
-            <Col lg="4">
-                <Card>
-                    <ListGroup as="ul" className="list-group-flush">
-                        <ListGroup.Item as="li" className="p-3">
-                            <h5 className="font-weight-bold pb-2">Order Info</h5>
-                            <div className="table-responsive">
-                                <table className="table table-borderless mb-0">
-                                    <tbody>
-                                        <tr className="white-space-no-wrap">
-                                            <td className="text-muted pl-0">
-                                                ID
-                                            </td>
-                                            <td>
-                                                {order.id}
-                                            </td>
-                                        </tr>
-                                        <tr className="white-space-no-wrap">
-                                            <td className="text-muted pl-0">
-                                                Id customer
-                                            </td>
-                                            <td>
-                                                {order.idUser}
-                                            </td>
-                                        </tr>
-                                        <tr className="white-space-no-wrap">
-                                            <td className="text-muted pl-0">
-                                                Id produit
-                                            </td>
-                                            <td>
-                                                {order.idProduit}
-                                            </td>
-                                        </tr>
-                                        <tr className="white-space-no-wrap">
-                                            <td className="text-muted pl-0">
-                                                Total
-                                            </td>
-                                            <td className="text-primary">
-                                                {order.total} DT
-                                            </td>
-                                        </tr>
-                                        <tr className="white-space-no-wrap">
-                                            <td className="text-muted pl-0">
-                                                Status
-                                            </td>
-                                            <td>
-                                                <p className="mb-0 text-success font-weight-bold d-flex justify-content-start align-items-center">
-                                                    <small><svg className="mr-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">                                                
-                                                    <circle  cx="12" cy="12" r="8" fill="#3cb72c"></circle></svg>
-                                                    </small>Completed
-                                                </p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ListGroup.Item>
-                        {/* <ListGroup.Item as="li" className="p-3">
+          <Col lg="4">
+            <Card>
+              <ListGroup as="ul" className="list-group-flush">
+                <ListGroup.Item as="li" className="p-3">
+                  <h5 className="font-weight-bold pb-2">fournisseur Info</h5>
+                  <div className="table-responsive">
+                    <table className="table table-bfournisseurless mb-0">
+                      <tbody>
+                        <tr className="white-space-no-wrap">
+                          <td className="text-muted pl-0">ID</td>
+                          <td>{fournisseur.idFournisseur}</td>
+                        </tr>
+                        <tr className="white-space-no-wrap">
+                          <td className="text-muted pl-0">Nom</td>
+                          <td>{fournisseur.nom}</td>
+                        </tr>
+                        <tr className="white-space-no-wrap">
+                          <td className="text-muted pl-0">prenom</td>
+                          <td>{fournisseur.prenom}</td>
+                        </tr>
+                        <tr className="white-space-no-wrap">
+                          <td className="text-muted pl-0">Email</td>
+                          <td className="text-primary">{fournisseur.email} DT</td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </ListGroup.Item>
+                {/* <ListGroup.Item as="li" className="p-3">
                             <h5 className="font-weight-bold pb-2">Customer Details</h5>
                             <div className="table-responsive">
-                                <table className="table table-borderless mb-0">
+                                <table className="table table-bfournisseurless mb-0">
                                     <tbody>
                                         <tr className="white-space-no-wrap">
                                             <td className="text-muted pl-0">
@@ -167,14 +150,14 @@ const Orderdetails =()=>{
                                 </table>
                             </div>
                         </ListGroup.Item> */}
-                    </ListGroup>
-                </Card>
-            </Col>
-            <Col lg="8">
-                {/* <Card>
+              </ListGroup>
+            </Card>
+          </Col>
+          <Col lg="8">
+            {/* <Card>
                     <ListGroup as="ul" className="list-group-flush">
                         <ListGroup.Item as="li" className="p-3">
-                            <h5 className="font-weight-bold">Order Items</h5>
+                            <h5 className="font-weight-bold">fournisseur Items</h5>
                         </ListGroup.Item>
                         <ListGroup.Item as="li" className="p-0">
                            <div className="table-responsive">
@@ -267,11 +250,11 @@ const Orderdetails =()=>{
                         </ListGroup.Item>
                     </ListGroup>
                 </Card> */}
-            </Col>
+          </Col>
         </Row>
-    </Container>
-        </>
-    )
-}
+      </Container>
+    </>
+  );
+};
 
-export default Orderdetails;
+export default FournisseurView;
