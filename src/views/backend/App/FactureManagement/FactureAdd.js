@@ -31,7 +31,7 @@ const FactureAdd = () => {
 
   const onSubmit = async (e) => {
     //  e.preventDefault();
-    axios.post("http://localhost:8084/factures/add", formFacture);
+    axios.post("http://localhost:8081/factures/add", formFacture);
   };
 
   const deleteFacture = async (id) => {

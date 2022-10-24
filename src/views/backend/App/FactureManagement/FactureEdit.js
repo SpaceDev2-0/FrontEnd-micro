@@ -27,7 +27,7 @@ const FactureEdit = () => {
     async function fetchFacture() {
     
         axios
-          .get(`http://localhost:8084/factures/retrieve-facture/`+id, {
+          .get(`http://localhost:8081/factures/retrieve-facture/`+id, {
             headers: { "Access-Control-Allow-Origin": "*" },
           })
           .then((res) => {
@@ -67,7 +67,7 @@ const FactureEdit = () => {
 
       const onSubmit = async (e) => {
         //  e.preventDefault();
-        axios.put("http://localhost:8084/factures/update/"+id, formFacture);
+        axios.put("http://localhost:8081/factures/update/"+id, formFacture);
         history.push("/Facture")
       };
     
