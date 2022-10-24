@@ -35,11 +35,11 @@ const CommandeAdd = () => {
 
   const onSubmit = async (e) => {
     //  e.preventDefault();
-    axios.post("http://localhost:8081/commande/add", formCommande);
+    axios.post("http://localhost:8089/commande/add", formCommande);
   };
 
   const deleteCommande = async (id) => {
-    axios.delete("http://localhost:8081/commande/" + id);
+    axios.delete("http://localhost:8089/commande/" + id);
   };
 
   return (

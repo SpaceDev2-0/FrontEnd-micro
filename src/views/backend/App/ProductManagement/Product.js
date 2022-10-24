@@ -11,7 +11,7 @@ export default function Product() {
    const history = useHistory();
    const fetchproducts= async (e) => {
     try{
-        const response = await axios.get("http://localhost:8092/servlet/api/products/retrieveProduits");
+        const response = await axios.get("http://localhost:8089/products/retrieveProduits");
         console.log("------",response.data);
         setProduct(response.data);
 
@@ -23,7 +23,7 @@ export default function Product() {
 
   
    const deleteProduct = async (id) => {
-    axios.delete("http://localhost:8092/servlet/api/products/" + id);
+    axios.delete("http://localhost:8089/products/" + id);
     window.location.reload(false);
     
   }; 

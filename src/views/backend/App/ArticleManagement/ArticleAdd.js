@@ -23,7 +23,7 @@ const Articleadd = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const history = useHistory();
   const onSubmit = async (e) => {
-    axios.post("http://localhost:8081/articles/add", formData);
+    axios.post("http://localhost:8089/articles/add", formData);
     history.push("/article");
   };
 

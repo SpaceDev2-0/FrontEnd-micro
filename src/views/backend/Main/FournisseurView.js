@@ -10,7 +10,7 @@ const FournisseurView = () => {
 
   //get data form api
   const getFournisseurByID = () => {
-    axios.get(`http://localhost:8099/${id}`).then((response) => {
+    axios.get(`http://localhost:8089/fournisseurs/${id}`).then((response) => {
       setFournisseur(response.data);
     });
   };

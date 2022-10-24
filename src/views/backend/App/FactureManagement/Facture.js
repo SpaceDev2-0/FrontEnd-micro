@@ -25,7 +25,7 @@ const Facture = () => {
     console.log("aaaaaaa");
 
     axios
-      .get(`http://localhost:8081/factures/all`, {
+      .get(`http://localhost:8089/factures/all`, {
         headers: { "Access-Control-Allow-Origin": "*" },
       })
       .then((res) => {
@@ -40,7 +40,7 @@ const Facture = () => {
 
 
   const deleteFacture = async(id)=>{
-    axios.delete('http://localhost:8081/factures/remove-facture/'+id)
+    axios.delete('http://localhost:8089/factures/remove-facture/'+id)
    // const notify = () => toast("Facture deleted !");
   }
 

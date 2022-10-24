@@ -30,7 +30,7 @@ const CommandeEdit = () => {
     async function fetchCommande() {
     
         axios
-          .get(`http://localhost:8081/commande/Find/`+id, {
+          .get(`http://localhost:8089/commande/Find/`+id, {
             headers: { "Access-Control-Allow-Origin": "*" },
           })
           .then((res) => {
@@ -72,7 +72,7 @@ const CommandeEdit = () => {
 
       const onSubmit = async (e) => {
         //  e.preventDefault();
-        axios.put("http://localhost:8081/commande/updateCommande/"+id, formCommande);
+        axios.put("http://localhost:8089/commande/updateCommande/"+id, formCommande);
         history.push("/Commande")
       };
     

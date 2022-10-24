@@ -19,7 +19,7 @@ const Ordernew =()=>{
     // add order axios post request
     const addOrder =()=>{
         console.log(idProduct,idUser,total)
-        axios.post('http://localhost:8762/createPanier',{
+        axios.post('http://localhost:8089/paniers/createPanier',{
             idUser:idUser,
             idProduit:idProduct,
             total:total
