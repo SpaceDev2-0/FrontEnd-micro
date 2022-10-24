@@ -170,7 +170,6 @@ const SidebarStyle = (props) => {
                 </Link>
               </li>
 
-<<<<<<< HEAD
               <li
                 className={`${
                   location.pathname === "/article" ? "active" : ""
@@ -196,7 +195,7 @@ const SidebarStyle = (props) => {
                   <span className="ml-2">Article</span>
                 </Link>
               </li>
-=======
+
                         <li className={`${location.pathname === '/commande' ? 'active' :'' }  sidebar-layout`}>
                             <Link to="/Commande" className="svg-icon ">
                                 <i className="">
@@ -218,10 +217,6 @@ const SidebarStyle = (props) => {
                                 <span className="ml-2">Facture</span>
                             </Link>
                         </li>
-
-                        
->>>>>>> facture
-
               <li
                 className={`${
                   location.pathname === "/order" ? "active" : ""
