@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link , useHistory} from 'react-router-dom'
 import {Navbar,Nav,Dropdown,Button,Form} from 'react-bootstrap'
 import  Card from '../../../../components/Card'
 import {getDarkMode} from '../../../../store/mode'
@@ -29,10 +29,23 @@ function mapStateToProps(state) {
 }
 
 
+
+//get user form localstorage
+const user = JSON.parse(localStorage.getItem('user'))
+
+
+
 const  HeaderStyle1 =(props) =>{
    const minisidbar =() =>{
     document.body.classList.toggle('sidebar-main')
 }
+const history = useHistory();
+//logout
+const logout = () => {
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+}
+
     return(
          <>
 
@@ -241,7 +254,7 @@ const  HeaderStyle1 =(props) =>{
                         <Dropdown as="li" className="nav-item nav-icon">
                             <Dropdown.Toggle  as={Button} href="#" variant="nav-item nav-icon pr-0 search-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                 <img src={user1} className="img-fluid avatar-rounded" alt="user"/>
-                                <span className="mb-0 ml-2 user-name">John Doe</span>
+                                <span className="mb-0 ml-2 user-name">{user.name}</span>
                             </Dropdown.Toggle>
                             <Dropdown.Menu as="ul"  className="dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                 <Dropdown.Item as="li" className="d-flex svg-icon">
@@ -273,7 +286,7 @@ const  HeaderStyle1 =(props) =>{
                                     <svg className="svg-icon mr-0 text-secondary" id="h-05-p" width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                     </svg>
-                                    <Link to="/auth/sign-in">Logout</Link>
+                                    <Link to="/" onClick={() => logout()}>Logout</Link>
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>

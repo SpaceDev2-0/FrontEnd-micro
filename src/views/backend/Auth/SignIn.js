@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom'
 import  Card from '../../../components/Card'
 import {connect} from "react-redux";
 import {getDarkMode} from '../../../store/mode'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+
 //img
 import logo from '../../../assets/images/logo.png'
 import darklogo from '../../../assets/images/logo-dark.png'
+import axios from 'axios';
 
 
 function mapStateToProps(state) {
@@ -16,10 +18,34 @@ function mapStateToProps(state) {
    };
 }
 
+async function loginUser(credentials) {
+   axios.post('http://localhost:4000/login', credentials).then(
+      response => {
+         console.log(response);
+         return response.data;
+      }
+   ).catch(
+      error => {
+         console.log(error);
+      }
+   )
+}
 
 
 const SignIn = (props) => {
-    let history =useHistory()
+   const [email, setEmail] = React.useState('');
+   const [password, setPassword] = React.useState('');
+   const history = useHistory();
+
+   const handleSubmit = async e => {
+      e.preventDefault();
+      const token = await loginUser({
+         email,
+         password
+      });
+      history.push("/");
+   }
+   
 
     return (
         <>
@@ -63,7 +89,9 @@ const SignIn = (props) => {
                               <Col lg="12">
                                  <Form.Group>
                                     <Form.Label className="text-secondary">Email</Form.Label>
-                                    <Form.Control  type="email" placeholder="Enter Email"/>
+                                    <Form.Control  type="email" placeholder="Enter Email" onChange={
+                                       (e) => setEmail(e.target.value)
+                                    } />
                                  </Form.Group>
                               </Col>
                               <Col lg="12" className="mt-2">
@@ -72,11 +100,13 @@ const SignIn = (props) => {
                                          <Form.Label className="text-secondary">Password</Form.Label>
                                          <Form.Label><Link to="/auth/recoverpw">Forgot Password?</Link></Form.Label>
                                      </div>
-                                    <Form.Control type="password" placeholder="Enter Password"/>
+                                    <Form.Control type="password" placeholder="Enter Password" onChange={
+                                       (e) => setPassword(e.target.value)
+                                    }/>
                                  </Form.Group>
                               </Col>
                            </Row>
-                           <Button type="submit" onClick={() => history.push('/')} variant="btn btn-primary btn-block mt-2">Log In</Button>
+                           <Button type="submit" onClick={() => handleSubmit()} variant="btn btn-primary btn-block mt-2">Log In</Button>
                            <Col lg="12" className="mt-3">
                                 <p className="mb-0 text-center">Don't have an account? <Link to="/auth/sign-up">Sign Up</Link></p>
                            </Col>
