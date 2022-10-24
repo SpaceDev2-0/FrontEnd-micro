@@ -25,7 +25,7 @@ const Facture = () => {
     console.log("aaaaaaa");
 
     axios
-      .get(`http://localhost:8081/factures/all`, {
+      .get(`http://localhost:8089/factures/all`, {
         headers: { "Access-Control-Allow-Origin": "*" },
       })
       .then((res) => {

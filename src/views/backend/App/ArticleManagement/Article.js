@@ -112,7 +112,7 @@ const Article = () => {
     console.log("aaaaaaa");
 
     axios
-      .get(`http://localhost:8081/articles/all`, {
+      .get(`http://localhost:8089/articles/all`, {
         headers: { "Access-Control-Allow-Origin": "*" },
       })
       .then((res) => {
@@ -126,7 +126,7 @@ const Article = () => {
   }, []);
 
   const deleteArticle = async (id) => {
-    axios.delete("http://localhost:8081/articles/delete/" + id);
+    axios.delete("http://localhost:8089/articles/delete/" + id);
   };
 
   return (

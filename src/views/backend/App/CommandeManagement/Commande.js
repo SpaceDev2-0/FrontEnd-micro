@@ -114,7 +114,7 @@ const Commande = () => {
     console.log("aaaaaaa");
 
     axios
-      .get(`http://localhost:8081/commande/all`, {
+      .get(`http://localhost:8089/commandes/all`, {
         headers: { "Access-Control-Allow-Origin": "*" },
       })
       .then((res) => {
@@ -129,7 +129,7 @@ const Commande = () => {
 
 
   const deleteCommande = async(id)=>{
-    axios.delete('http://localhost:8081/commande/'+id)
+    axios.delete('http://localhost:8089/commandes/'+id)
    // const notify = () => toast("Commande deleted !");
   }
 

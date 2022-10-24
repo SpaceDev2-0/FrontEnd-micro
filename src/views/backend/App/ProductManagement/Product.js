@@ -11,7 +11,7 @@ export default function Product() {
    const history = useHistory();
    const fetchproducts= async (e) => {
     try{
-        const response = await axios.get("http://localhost:8092/servlet/api/products/retrieveProduits");
+        const response = await axios.get("http://localhost:8089/produits/retrieveProduits");
         console.log("------",response.data);
         setProduct(response.data);
 

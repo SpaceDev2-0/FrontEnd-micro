@@ -42,7 +42,7 @@ export default function ProductEdit() {
 
     async function getdataProduct() {
         axios
-          .get(`http://127.0.0.1:8092/servlet/api/products/getProductById/` + id, {
+          .get(`http://127.0.0.1:8089/produits/getProductById/` + id, {
             headers: { "Access-Control-Allow-Origin": "*" },
           })
           .then((res) => {
@@ -63,7 +63,7 @@ export default function ProductEdit() {
     }, [id])
 
     const onSubmit = async (e) => {
-        axios.put("http://127.0.0.1:8092/servlet/api/products/" + id,
+        axios.put("http://127.0.0.1:8089/produits/" + id,
         {
             productName:productName,
             price:price,
