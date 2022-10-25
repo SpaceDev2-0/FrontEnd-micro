@@ -23,7 +23,16 @@ const Articleadd = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const history = useHistory();
   const onSubmit = async (e) => {
-    axios.post("http://localhost:8089/articles/add", formData);
+    // axios.post("http://localhost:8089/articles/add", formData);
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+      // JSON.stringify({ title: 'React POST Request Example' })
+  };
+  fetch('http://localhost:8089/articles/add', requestOptions)
+      .then(response => response.json())
+      // .then(data => this.setState({ postId: data.id }));
     history.push("/article");
   };
 

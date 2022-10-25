@@ -15,34 +15,37 @@ import { Link } from "react-router-dom";
 // img
 import axios from "axios";
 
-
-
 const Facture = () => {
   const [Facture, setFacture] = useState(null);
   const history = useHistory();
 
   async function fetchData() {
     console.log("aaaaaaa");
-
-    axios
-      .get(`http://localhost:8089/factures/all`, {
-        headers: { "Access-Control-Allow-Origin": "*" },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setFacture(res.data);
-      });
+fetch('http://localhost:8089/factures/all').then(data => data.json()).then (data => setFacture(data))
+console.log(Facture)
+    // axios
+    //   .get(`http://localhost:8089/factures/all`, {
+    //     headers: { "Access-Control-Allow-Origin": "*",
+    //     'Accept': 'application/json', mode: "no-cors",
+    //     headers: { "Content-Type" : "application/json charset=UTF-8"},
+    //     body: "entityJson",
+    //         'Content-Type': 'application/json'},
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     setFacture(res.data);
+    //   });
   }
+  console.log(Facture)
 
   useEffect(() => {
     fetchData();
   }, []);
 
-
-  const deleteFacture = async(id)=>{
-    axios.delete('http://localhost:8089/factures/remove-facture/'+id)
-   // const notify = () => toast("Facture deleted !");
-  }
+  const deleteFacture = async (id) => {
+    axios.delete("http://localhost:8089/factures/remove-facture/" + id);
+    // const notify = () => toast("Facture deleted !");
+  };
 
   return (
     <>
@@ -133,7 +136,7 @@ const Facture = () => {
                         Export
                       </Button>
                     </div>
-                    <div className="table-responsive">
+                    {/* <div className="table-responsive">
                       <table className="table data-table mb-0">
                         <thead className="table-color-heading">
                           <tr className="">
@@ -156,7 +159,6 @@ const Facture = () => {
                             <th scope="col">Date Facture</th>
                             <th scope="col">Etat</th>
                             <th scope="col">description</th>
-                          
 
                             <th scope="col" className="text-right">
                               Action
@@ -180,8 +182,6 @@ const Facture = () => {
                                 </div>
                               </td>
 
-                             
-
                               <td>{item.nom}</td>
 
                               <td>{item.date}</td>
@@ -189,12 +189,7 @@ const Facture = () => {
                               <td>{item.etat}</td>
 
                               <td>{item.description}</td>
-                             
 
-
-
-
-                              
                               <td>
                                 <div className="d-flex justify-content-end align-items-center">
                                   <OverlayTrigger
@@ -229,12 +224,13 @@ const Facture = () => {
                                     placement="top"
                                     overlay={<Tooltip>Edit</Tooltip>}
                                   >
-                                    <Link className="" 
-                                    onClick={() =>
-                                      history.push(
-                                        "/FactureEdit/" + item.idFacture
-                                      )
-                                    }
+                                    <Link
+                                      className=""
+                                      onClick={() =>
+                                        history.push(
+                                          "/FactureEdit/" + item.idFacture
+                                        )
+                                      }
                                     >
                                       <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -256,13 +252,13 @@ const Facture = () => {
                                   <OverlayTrigger
                                     placement="top"
                                     overlay={<Tooltip>Delete</Tooltip>}
-                                    
                                   >
-                                    <Link className="badge bg-danger"
-                                    to="#"
-                                    onClick={() =>
-                                      deleteFacture(item.idFacture)
-                                    }
+                                    <Link
+                                      className="badge bg-danger"
+                                      to="#"
+                                      onClick={() =>
+                                        deleteFacture(item.idFacture)
+                                      }
                                     >
                                       <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -286,7 +282,7 @@ const Facture = () => {
                           ))}
                         </tbody>
                       </table>
-                    </div>
+                    </div> */}
                   </Card.Body>
                 </Card>
               </Col>

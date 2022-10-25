@@ -9,18 +9,21 @@ import Card from '../../../../components/Card';
 export default function Product() {
    const [product, setProduct] = useState([]);
    const history = useHistory();
-   const fetchproducts= async (e) => {
-    try{
-        const response = await axios.get("http://localhost:8089/products/retrieveProduits");
-        console.log("------",response.data);
-        setProduct(response.data);
+//    const fetchproducts= async (e) => {
+//     try{
+//         const response = await axios.get("http://localhost:8089/products/retrieveProduits");
+//         console.log("------",response.data);
+//         setProduct(response.data);
 
-    } catch(err){
-        console.error(err);
-    }
+//     } catch(err){
+//         console.error(err);
+//     }
 
-   };
-
+//    };
+   async function fetchproducts() {
+    console.log("aaaaaaa");
+fetch('http://localhost:8089/products/retrieveProduits').then(data => data.json()).then (data => setProduct(data))
+   }
   
    const deleteProduct = async (id) => {
     axios.delete("http://localhost:8089/products/" + id);

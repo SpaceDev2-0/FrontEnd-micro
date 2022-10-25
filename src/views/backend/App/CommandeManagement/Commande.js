@@ -110,19 +110,23 @@ const Commande = () => {
   const [commande, setCommande] = useState(null);
   const history = useHistory();
 
+  // async function fetchData() {
+  //   console.log("aaaaaaa");
+
+  //   axios
+  //     .get(`http://localhost:8089/commande/all`, {
+  //       headers: { "Access-Control-Allow-Origin": "*" },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setCommande(res.data);
+  //     });
+  // }
   async function fetchData() {
     console.log("aaaaaaa");
-
-    axios
-      .get(`http://localhost:8089/commande/all`, {
-        headers: { "Access-Control-Allow-Origin": "*" },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setCommande(res.data);
-      });
-  }
-
+fetch('http://localhost:8089/commande/all').then(data => data.json()).then (data => setCommande(data))
+console.log(commande)
+   }
   useEffect(() => {
     fetchData();
   }, []);

@@ -108,18 +108,24 @@ const Article = () => {
   const [articles, setArticles] = useState(null);
   const history = useHistory();
 
+  // async function fetchData() {
+  //   console.log("aaaaaaa");
+
+  //   axios
+  //     .get(`http://localhost:8081/articles/all`, {
+  //       headers: { "Access-Control-Allow-Origin": "*" },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setArticles(res.data);
+  //     });
+  // }
   async function fetchData() {
     console.log("aaaaaaa");
-
-    axios
-      .get(`http://localhost:8089/articles/all`, {
-        headers: { "Access-Control-Allow-Origin": "*" },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setArticles(res.data);
-      });
-  }
+fetch('http://localhost:8089/articles/all').then(data => data.json()).then (data => setArticles(data))
+console.log(articles)
+   }
+  console.log(articles)
 
   useEffect(() => {
     fetchData();
@@ -264,7 +270,6 @@ const Article = () => {
                                   ></label>
                                 </div>
                               </td>
-
                               <td className="">
                                 <div className="active-project-1 d-flex align-items-center mt-0 ">
                                   <div className="h-avatar is-medium">
