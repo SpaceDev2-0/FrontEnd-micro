@@ -133,7 +133,7 @@ console.log(commande)
 
 
   const deleteCommande = async(id)=>{
-    axios.delete('http://localhost:8089/commande/'+id)
+    axios.delete('http://localhost:8083/commande/'+id)
    // const notify = () => toast("Commande deleted !");
   }
 

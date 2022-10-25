@@ -20,8 +20,8 @@ export default function Product() {
 //     }
 
 //    };
+
    async function fetchproducts() {
-    console.log("aaaaaaa");
 fetch('http://localhost:8089/products/retrieveProduits').then(data => data.json()).then (data => setProduct(data))
    }
   

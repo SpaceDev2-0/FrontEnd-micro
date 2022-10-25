@@ -72,7 +72,7 @@ const CommandeEdit = () => {
 
       const onSubmit = async (e) => {
         //  e.preventDefault();
-        axios.put("http://localhost:8089/commande/updateCommande/"+id, formCommande);
+        axios.put("http://localhost:8083/commande/updateCommande/"+id, formCommande);
         history.push("/Commande")
       };
     

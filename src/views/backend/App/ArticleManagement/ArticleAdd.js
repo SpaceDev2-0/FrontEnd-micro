@@ -30,7 +30,7 @@ const Articleadd = () => {
       body: JSON.stringify(formData)
       // JSON.stringify({ title: 'React POST Request Example' })
   };
-  fetch('http://localhost:8089/articles/add', requestOptions)
+  fetch('http://localhost:8081/articles/add', requestOptions)
       .then(response => response.json())
       // .then(data => this.setState({ postId: data.id }));
     history.push("/article");

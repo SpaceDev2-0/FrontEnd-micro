@@ -18,10 +18,9 @@ import axios from "axios";
 const Facture = () => {
   const [Facture, setFacture] = useState(null);
   const history = useHistory();
-
   async function fetchData() {
     console.log("aaaaaaa");
-fetch('http://localhost:8089/factures/all').then(data => data.json()).then (data => setFacture(data))
+fetch('http://localhost:8084/factures/all').then(data => data.json()).then (data => setFacture(data))
 console.log(Facture)
     // axios
     //   .get(`http://localhost:8089/factures/all`, {
