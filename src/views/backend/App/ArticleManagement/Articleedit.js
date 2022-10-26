@@ -52,7 +52,7 @@ const Articleedit = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
-    axios.put("http://localhost:8089/articles/update-Article/" + id, formData);
+    axios.put("http://localhost:8081/articles/update-Article/" + id, formData);
     history.push("/article");
   };
   return (

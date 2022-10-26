@@ -118,32 +118,7 @@ const SidebarStyle = (props) => {
                   Application
                 </span>
               </li>
-              <li
-                className={`${
-                  location.pathname === "/customer" ? "active" : ""
-                }  sidebar-layout`}
-              >
-                <Link to="/customer" className="svg-icon ">
-                  <i className="">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                      />
-                    </svg>
-                  </i>
-                  <span className="ml-2">Customer</span>
-                </Link>
-              </li>
-
+             
               <li
                 className={`${
                   location.pathname === "/commande" ? "active" : ""
@@ -169,6 +144,8 @@ const SidebarStyle = (props) => {
                   <span className="ml-2">Commande</span>
                 </Link>
               </li>
+
+
 
               <li
                 className={`${
@@ -196,17 +173,7 @@ const SidebarStyle = (props) => {
                 </Link>
               </li>
 
-                        <li className={`${location.pathname === '/commande' ? 'active' :'' }  sidebar-layout`}>
-                            <Link to="/Commande" className="svg-icon ">
-                                <i className="">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                    </svg>
-                                </i>
-                                <span className="ml-2">Commande</span>
-                            </Link>
-                        </li>
-
+              
                         <li className={`${location.pathname === '/Facture' ? 'active' :'' }  sidebar-layout`}>
                             <Link to="/Facture" className="svg-icon ">
                                 <i className="">
@@ -239,9 +206,14 @@ const SidebarStyle = (props) => {
                       />
                     </svg>
                   </i>
+
+
                   <span className="ml-2">Order</span>
                 </Link>
               </li>
+
+
+
               <li
                 className={`${
                   location.pathname === "/fournisseur" ? "active" : ""
@@ -268,6 +240,8 @@ const SidebarStyle = (props) => {
                 </Link>
               </li>
 
+
+
               <li
                 className={`${
                   location.pathname === "/product" ? "active" : ""
@@ -293,93 +267,8 @@ const SidebarStyle = (props) => {
                   <span className="ml-2">Product</span>
                 </Link>
               </li>
-              <li
-                className={`${
-                  location.pathname === "/order" ? "active" : ""
-                }  sidebar-layout`}
-              >
-                <Link to="/order" className="svg-icon">
-                  <i className="">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                      />
-                    </svg>
-                  </i>
-                  <span className="ml-2">Order</span>
-                </Link>
-              </li>
-              <li
-                className={`${
-                  location.pathname === "/pages-invoice" ? "active" : ""
-                }  sidebar-layout`}
-              >
-                <Link to="/pages-invoice" className="svg-icon">
-                  <i className="">
-                    <svg
-                      className="icon line"
-                      width="18"
-                      id="receipt"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        d="M17,16V3L13,5,10,3,7,5,3,3V17.83A3.13,3.13,0,0,0,5.84,21,3,3,0,0,0,9,18V17a1,1,0,0,1,1-1H20a1,1,0,0,1,1,1v1a3,3,0,0,1-3,3H6"
-                        strokeWidth="2"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      ></path>
-                      <line
-                        x1="8"
-                        y1="10"
-                        x2="12"
-                        y2="10"
-                        strokeWidth="2"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      ></line>
-                    </svg>
-                  </i>
-                  <span className="ml-2">Invoice</span>
-                </Link>
-              </li>
-              <li
-                className={`${
-                  location.pathname === "/todo" ? "active" : ""
-                }  sidebar-layout`}
-              >
-                <Link to="/todo" className="svg-icon">
-                  <i className="">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                      />
-                    </svg>
-                  </i>
-                  <span className="ml-2">Todo</span>
-                </Link>
-              </li>
+
+              
               <li
                 className={`${
                   location.pathname === "/calendar" ? "active" : ""

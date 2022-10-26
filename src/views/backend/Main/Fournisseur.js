@@ -18,7 +18,7 @@ const Fournisseur = () => {
 
     //delete fournisseur
     const deleteFournisseur = async (id) => {
-        await axios.delete(`http://localhost:8089/fournisseurs/${id}`)
+        await axios.delete(`http://localhost:8099/fournisseurs/${id}`)
         window.location.reload()
     }
 

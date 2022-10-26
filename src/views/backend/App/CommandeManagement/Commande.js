@@ -124,7 +124,7 @@ const Commande = () => {
   // }
   async function fetchData() {
     console.log("aaaaaaa");
-fetch('http://localhost:8089/commande/all').then(data => data.json()).then (data => setCommande(data))
+fetch('http://localhost:8089/commandes/all').then(data => data.json()).then (data => setCommande(data))
 console.log(commande)
    }
   useEffect(() => {
@@ -133,7 +133,7 @@ console.log(commande)
 
 
   const deleteCommande = async(id)=>{
-    axios.delete('http://localhost:8083/commande/'+id)
+    axios.delete('http://localhost:8083/commandes/'+id)
    // const notify = () => toast("Commande deleted !");
   }
 

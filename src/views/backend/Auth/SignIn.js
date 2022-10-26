@@ -19,7 +19,7 @@ function mapStateToProps(state) {
 }
 
 async function loginUser(credentials) {
-   axios.post('http://localhost:4000/login', credentials).then(
+   axios.post('http://localhost:5000/login', credentials).then(
       response => {
          console.log(response);
          return response.data;
@@ -96,10 +96,7 @@ const SignIn = (props) => {
                               </Col>
                               <Col lg="12" className="mt-2">
                                  <Form.Group>
-                                     <div className="d-flex justify-content-between align-items-center">
-                                         <Form.Label className="text-secondary">Password</Form.Label>
-                                         <Form.Label><Link to="/auth/recoverpw">Forgot Password?</Link></Form.Label>
-                                     </div>
+                                     
                                     <Form.Control type="password" placeholder="Enter Password" onChange={
                                        (e) => setPassword(e.target.value)
                                     }/>

@@ -132,7 +132,7 @@ console.log(articles)
   }, []);
 
   const deleteArticle = async (id) => {
-    axios.delete("http://localhost:8089/articles/delete/" + id);
+    axios.delete("http://localhost:8081/articles/delete/" + id);
   };
 
   return (

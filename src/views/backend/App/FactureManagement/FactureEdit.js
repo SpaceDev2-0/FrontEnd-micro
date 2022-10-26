@@ -6,72 +6,55 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
-
 // img
 import user1 from "../../../../assets/images/user/1.jpg";
 
 const FactureEdit = () => {
-    const { id } = useParams();
-    const history = useHistory();
-    const [Facture , setFacture ] = useState(null) ; 
-    const [formFacture, setFormFacture] = useState({
-        idFacture: "",
-        etat: "",
-        description: "",
-        nom: "",
-        date: "",
+  const { id } = useParams();
+  const history = useHistory();
+  const [Facture, setFacture] = useState(null);
+  const [formFacture, setFormFacture] = useState({
+    idFacture: "",
+    etat: "",
+    description: "",
+    nom: "",
+    date: "",
+  });
+
+  async function fetchFacture() {
+    axios
+      .get(`http://localhost:8084/factures/retrieve-facture/` + id, {
+        headers: { "Access-Control-Allow-Origin": "*" },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setFacture(res.data);
+        setFormFacture({
+          idFacture: res.data.idFacture,
+          etat: res.data.etat,
+          description: res.data.description,
+          nom: res.data.nom,
+          date: res.data.date,
+        });
       });
-     
+  }
 
+  useEffect(() => {
+    fetchFacture();
+    console.log(id);
+  }, [id]);
 
-    async function fetchFacture() {
-    
-        axios
-          .get(`http://localhost:8089/factures/retrieve-facture/`+id, {
-            headers: { "Access-Control-Allow-Origin": "*" },
-          })
-          .then((res) => {
-            console.log(res.data);
-            setFacture(res.data)
-            setFormFacture({
-                idFacture: res.data.idFacture,
-                etat: res.data.etat,
-                description: res.data.description,
-                nom: res.data.nom,
-                date: res.data.date,
-            
-            })
-          });
-      }
+  const { etat, description, date_livraison, nom, date, frais, produit } =
+    formFacture;
 
-      useEffect(() => {
-        fetchFacture();
-        console.log(id);
-      }, [id]);
+  const onChange = (e) =>
+    setFormFacture({ ...formFacture, [e.target.name]: e.target.value });
 
-      const {
-        etat,
-        description,
-        date_livraison,
-        nom,
-        date,
-        frais,
-        produit,
-      } = formFacture;
-
-      const onChange = (e) =>
-      setFormFacture({ ...formFacture, [e.target.name]: e.target.value });
-
-
-     
-
-      const onSubmit = async (e) => {
-        //  e.preventDefault();
-        axios.put("http://localhost:8089/factures/update/"+id, formFacture);
-        history.push("/Facture")
-      };
-    
-
+  const onSubmit = async (e) => {
+    //  e.preventDefault();
+    axios.put("http://localhost:8084/factures/update/" + id, formFacture);
+    history.push("/Facture");
+  };
 
   return (
     <>
@@ -121,7 +104,7 @@ const FactureEdit = () => {
               <Card.Body>
                 <Row>
                   <Col md="12">
-                  <form
+                    <form
                       className="row g-3 date-icon-set-modal"
                       onSubmit={onSubmit}
                     >
@@ -195,8 +178,6 @@ const FactureEdit = () => {
                         </span>
                       </div>
 
-                      
-
                       <div className="col-md-6 mb-3">
                         <Form.Label
                           htmlFor="Text4"
@@ -213,8 +194,6 @@ const FactureEdit = () => {
                           placeholder="Description"
                         />
                       </div>
-
-                     
 
                       <div className="d-flex justify-content-end mt-3">
                         <Button variant="btn btn-primary" type="submit">

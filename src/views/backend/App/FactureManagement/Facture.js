@@ -20,7 +20,7 @@ const Facture = () => {
   const history = useHistory();
   async function fetchData() {
     console.log("aaaaaaa");
-fetch('http://localhost:8084/factures/all').then(data => data.json()).then (data => setFacture(data))
+fetch('http://localhost:8089/factures/all').then(data => data.json()).then (data => setFacture(data))
 console.log(Facture)
     // axios
     //   .get(`http://localhost:8089/factures/all`, {
@@ -42,7 +42,7 @@ console.log(Facture)
   }, []);
 
   const deleteFacture = async (id) => {
-    axios.delete("http://localhost:8089/factures/remove-facture/" + id);
+    axios.delete("http://localhost:8084/factures/remove-facture/" + id);
     // const notify = () => toast("Facture deleted !");
   };
 
@@ -135,7 +135,7 @@ console.log(Facture)
                         Export
                       </Button>
                     </div>
-                    {/* <div className="table-responsive">
+                    <div className="table-responsive">
                       <table className="table data-table mb-0">
                         <thead className="table-color-heading">
                           <tr className="">
@@ -281,7 +281,7 @@ console.log(Facture)
                           ))}
                         </tbody>
                       </table>
-                    </div> */}
+                    </div>
                   </Card.Body>
                 </Card>
               </Col>
